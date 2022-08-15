@@ -1,0 +1,12 @@
+H1.vspace.before = 2
+H1.vspace.after = 1
+H2.vspace.before = 2
+H2.vspace.after = 1
+H2.attributes = BOLD
+
+TABLE.vspace.before = 2
+TABLE.vspace.after = 2
+
+BLOCKQUOTE.vspace.before = 1
+
+P.vspace.before = 1
