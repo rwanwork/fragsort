@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+title: Sorting next generation sequencing data improves compression effectiveness
+message: 'If you use this software, please cite it as below.'
+type: software
+authors:
+  - given-names: R
+    family-names: Wan
+  - given-names: K
+    family-names: Asai
+preferred-citation:
+  type: article
+  authors:
+  - family-names: "Wan"
+    given-names: "R"
+    orcid: "https://orcid.org/0000-0003-3202-7008"
+  - family-names: "Asai"
+    given-names: "K"
+    orcid: "https://orcid.org/0000-0003-0909-4982"
+  doi: "https://doi.org/10.1109/BIBMW.2010.5703863"
+  start: 567 # First page number
+  end: 572 # Last page number
+  title: "Sorting next generation sequencing data improves compression effectiveness"
+  booktitle:  Proc. 2010 IEEE International Conference on Bioinformatics and Biomedicine (BIBM) -- Workshops and Posters
+  publisher:  IEEE Computer Society Press
+  year: 2010
