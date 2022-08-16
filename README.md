@@ -105,62 +105,34 @@ In the scripts/ directory, several Perl scripts and a single bash script is avai
 See scripts/process.sh or the Perl scripts themselves if you wish to change the selected parameters. If the command is issued on sample.fastq, then the output will be similar to the output in doc/sample.fastq.out .
 
 
-***** Understanding the Output *****
+Understanding the Output
+------------------------
+
+In the output directory (specified using the --outdir option to fragsort), a set of files is created. When the scripts complete, the temporary files are removed. The remaining files for both run-fragsort.pl and run-fragsort-index.pl are given in the following tables:
+
+Output from `run-fragsort.pl`:
+
+| Filename | Description |
+|:--------:|:-----------:|
+|sample-[unique ID]-[machine name]-fastq-{bpc,time}.results|Original FASTQ file compression    |
+|sample-[unique ID]-[machine name]-frags-{bpc,time}.results|Sequence compression               |
+|sample-[unique ID]-[machine name]-halffrags-{bpc,time}.results      |Identifier and sequence compression|
+|sample-[unique ID]-[machine name]-halfqscores-{bpc,time}.results      |Identifier and quality scores compression     |
+|sample-[unique ID]-[machine name]-oneid-{bpc,time}.results|Second identifier removed          |
+|sample-[unique ID]-[machine name]-qscores-{bpc,time}.results      |Quality scores compression         |
 
 
-In the output directory (specified using the --outdir option to fragsort), a
-set of files is created. When the scripts complete, the temporary files are
-removed. The remaining files for both run-fragsort.pl and run-fragsort-index.pl
-are given in the following tables:
-                         Output from run-fragsort.pl
+Output from `run-fragsort-index.pl`:
 
-|                                        |                                   |
-|Filename                                |Description                        |
-|                                        |                                   |
-|sample-[unique ID]-[machine name]-fastq-|Original FASTQ file compression    |
-|{bpc,time}.results                      |                                   |
-|                                        |                                   |
-|sample-[unique ID]-[machine name]-frags-|Sequence compression               |
-|{bpc,time}.results                      |                                   |
-|                                        |                                   |
-|sample-[unique ID]-[machine name]-      |Identifier and sequence compression|
-|halffrags-{bpc,time}.results            |                                   |
-|                                        |                                   |
-|sample-[unique ID]-[machine name]-      |Identifier and quality scores      |
-|halfqscores-{bpc,time}.results          |compression                        |
-|                                        |                                   |
-|sample-[unique ID]-[machine name]-oneid-|Second identifier removed          |
-|{bpc,time}.results                      |                                   |
-|                                        |                                   |
-|sample-[unique ID]-[machine name]-      |Quality scores compression         |
-|qscores-{bpc,time}.results              |                                   |
+| Filename | Description |
+|:--------:|:-----------:|
+|sample-[unique ID]-[machine name]-bit-{bpc,time}.data    | Index (bit-based) compression  |
+|sample-[unique ID]-[machine name]-fastq-time.results  | Original FASTQ file compression|
+|sample-[unique ID]-[machine name]-frags-{bpc,time}.data  | Sequence compression           |
+|sample-[unique ID]-[machine name]-ids-{bpc,time}.data    | Identifiers compression        |
+|sample-[unique ID]-[machine name]-qscores-{bpc,time}.data | Quality scores compression     |
 
-
-                     Output from run-fragsort-index.pl
-
-|                                          |                               |
-|Filename                                  |Description                    |
-|                                          |                               |
-|sample-[unique ID]-[machine name]-bit-    |Index (bit-based) compression  |
-|{bpc,time}.data                           |                               |
-|                                          |                               |
-|sample-[unique ID]-[machine name]-fastq-  |Original FASTQ file compression|
-|time.results                              |                               |
-|                                          |                               |
-|sample-[unique ID]-[machine name]-frags-  |Sequence compression           |
-|{bpc,time}.data                           |                               |
-|                                          |                               |
-|sample-[unique ID]-[machine name]-ids-    |Identifiers compression        |
-|{bpc,time}.data                           |                               |
-|                                          |                               |
-|sample-[unique ID]-[machine name]-qscores-|Quality scores compression     |
-|{bpc,time}.data                           |                               |
-
-
-
-There are minor differences between the formats of each file, which are all
-tab-separated. Basically, for the files reporting on compression effectiveness
-(bpc = bits per character), the fields are:
+There are minor differences between the formats of each file, which are all tab-separated. Basically, for the files reporting on compression effectiveness (bpc = bits per character), the fields are:
    1. filename
    2. method (quicksort, radix sort, or random)
    3. Quicksort or radix sort parameter, as a percentage
@@ -170,11 +142,7 @@ tab-separated. Basically, for the files reporting on compression effectiveness
    7. Size of the input data
    8. Size of the original FASTQ data file
 
-To get the compression ratio of gzip, divide the value in the 5th column by the
-value in either the 7th or 8th column (depending which is the reference point
-you desire). For the time files, the user and elapsed times are reported once
-per line. See `scripts/help_fragsort.pm` for more information about the format of
-the output files.
+To get the compression ratio of gzip, divide the value in the 5th column by the value in either the 7th or 8th column (depending which is the reference point you desire). For the time files, the user and elapsed times are reported once per line. See `scripts/help_fragsort.pm` for more information about the format of the output files.
 
 
 Missing Files
